@@ -6,6 +6,7 @@
 int	ft_printf(const char *format, ...);
 
 typedef struct s_conversion {
+	va_list	args;
 	bool	minus;
 	bool	zero;
 	bool	point;
