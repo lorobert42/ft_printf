@@ -6,13 +6,19 @@
 #    By: lorobert <marvin@42lausanne.ch>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/10 14:40:57 by lorobert          #+#    #+#              #
-#    Updated: 2022/10/21 08:27:15 by lorobert         ###   ########.fr        #
+#    Updated: 2022/10/21 13:52:21 by lorobert         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME			:= libftprintf.a
 
-SRCS			:= ft_printf.c
+SRCS			:=	ft_printf.c \
+					ft_printf_char.c \
+					ft_printf_int.c \
+					ft_printf_ptr.c \
+					ft_printf_string.c \
+					ft_printf_unsigned_int.c \
+					ft_itoa_unsigned.c
 SRCSB			:= $(SRCS)
 OBJS			:= $(SRCS:.c=.o)
 OBJSB			:= $(SRCSB:.c=.o)
@@ -31,10 +37,8 @@ RM				:= rm -f
 all: $(NAME)
 
 $(NAME): $(LIBFT) $(OBJS)
+	cp $(LIBFT_FOLDER)/$(LIBFT) $(NAME)
 	ar rc $(NAME) $(OBJS)
-
-bonus: $(LIBFT) $(OBJSB)
-	ar rc $(NAME) $(OBJSB)
 
 $(LIBFT):
 	make -C $(LIBFT_FOLDER) bonus
@@ -49,4 +53,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all bonus libft clean fclean re
+.PHONY: all libft clean fclean re

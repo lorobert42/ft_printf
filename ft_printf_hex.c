@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_string.c                                 :+:      :+:    :+:   */
+/*   ft_printf_hex.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lorobert <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 09:11:50 by lorobert          #+#    #+#             */
-/*   Updated: 2022/10/21 13:42:11 by lorobert         ###   ########.fr       */
+/*   Updated: 2022/10/21 15:24:44 by lorobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,14 @@
 #include <stdarg.h>
 #include "ft_printf.h"
 
-int	ft_printf_string(t_conversion *c)
+int	ft_printf_hex(t_conversion *c, int is_upp)
 {
-	char	*s;
+	unsigned int	n;
+	char			*s;
 
-	s = va_arg(c->args, char*);
-	return (write(1, s, ft_strlen(s)));
+	n = va_arg(c->args, unsigned int);
+	write(1, "0x", 2);
+	s = ft_itoa_hex(ptr, is_upp);
+	write(1, s, ft_strlen(s));
+	return (ft_strlen(s) + 2);
 }

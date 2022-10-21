@@ -6,7 +6,7 @@
 /*   By: lorobert <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 08:54:02 by lorobert          #+#    #+#             */
-/*   Updated: 2022/10/21 09:17:47 by lorobert         ###   ########.fr       */
+/*   Updated: 2022/10/21 15:28:46 by lorobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,11 @@ int	parse_conversion(const char *format, t_conversion *c)
 		count += ft_printf_hex(c, 0);
 	else if (*format == 'X')
 		count += ft_printf_hex(c, 1);
+	else if (*format == '%')
+		count += write(1, "%", 1);
 	else
-		return (count);
+		count = -1;
+	return (count);
 }
 
 void	init_conversion(t_conversion *c)
@@ -55,11 +58,10 @@ void	init_conversion(t_conversion *c)
 
 int	ft_printf(const char *format, ...)
 {
-	int				res;
-	int				tmp;
+	int				count;
 	t_conversion	*conversion;
 
-	res = 0;
+	count = 0;
 	conversion = malloc(sizeof(t_conversion));
 	if (!conversion)
 		return (-1);
@@ -69,14 +71,14 @@ int	ft_printf(const char *format, ...)
 	{
 		if (*format != '%')
 		{
-			res++;
-			printf("%c", *format);
+			count += write(1, format, 1);
 			format++;
 			continue ;
 		}
-		tmp = parse_conversion(++format, conversion);
+		count += parse_conversion(++format, conversion);
 		format++;
-		res += tmp + 1;
 	}
 	va_end(conversion->args);
+	free(conversion);
+	return (count);
 }

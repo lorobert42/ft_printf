@@ -2,8 +2,7 @@
 # define FT_PRINTF_H
 
 #include <stdbool.h>
-
-int	ft_printf(const char *format, ...);
+#include "libft/libft.h"
 
 typedef struct s_conversion {
 	va_list	args;
@@ -17,5 +16,16 @@ typedef struct s_conversion {
 	int		precision;
 	char	specifier;
 }	t_conversion;
+
+int		ft_printf(const char *format, ...);
+int		ft_printf_char(t_conversion *c);
+int 	ft_printf_int(t_conversion *c);
+int 	ft_printf_ptr(t_conversion *c);
+int 	ft_printf_string(t_conversion *c);
+int 	ft_printf_uint(t_conversion *c);
+int		ft_printf_hex(t_conversion *c, int is_upp);
+char	*ft_itoa_unsigned(unsigned int n);
+char	*ft_itoa_hex(unsigned int n, int is_upp);
+char	*ft_itoa_hex_long(unsigned long int n, int is_upp);
 
 #endif
