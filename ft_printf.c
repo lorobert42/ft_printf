@@ -6,7 +6,7 @@
 /*   By: lorobert <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 08:54:02 by lorobert          #+#    #+#             */
-/*   Updated: 2022/10/21 15:28:46 by lorobert         ###   ########.fr       */
+/*   Updated: 2022/10/21 17:00:49 by lorobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include "ft_printf.h"
-
-#include <stdio.h>
 
 int	parse_conversion(const char *format, t_conversion *c)
 {

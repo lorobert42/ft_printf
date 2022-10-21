@@ -6,7 +6,7 @@
 /*   By: lorobert <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/12 15:59:07 by lorobert          #+#    #+#             */
-/*   Updated: 2022/10/21 13:36:55 by lorobert         ###   ########.fr       */
+/*   Updated: 2022/10/21 17:10:53 by lorobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static size_t	ft_len_nbr(unsigned int n)
 	return (radix);
 }
 
-char	*ft_itoa(unsigned int n)
+char	*ft_itoa_unsigned(unsigned int n)
 {
 	size_t		len;
 	char		*nbr;

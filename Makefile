@@ -6,30 +6,33 @@
 #    By: lorobert <marvin@42lausanne.ch>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/10 14:40:57 by lorobert          #+#    #+#              #
-#    Updated: 2022/10/21 13:52:21 by lorobert         ###   ########.fr        #
+#    Updated: 2022/10/21 17:07:20 by lorobert         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME			:= libftprintf.a
+NAME		:= libftprintf.a
 
-SRCS			:=	ft_printf.c \
-					ft_printf_char.c \
-					ft_printf_int.c \
-					ft_printf_ptr.c \
-					ft_printf_string.c \
-					ft_printf_unsigned_int.c \
-					ft_itoa_unsigned.c
-SRCSB			:= $(SRCS)
-OBJS			:= $(SRCS:.c=.o)
-OBJSB			:= $(SRCSB:.c=.o)
+SRCS		:=	ft_printf.c \
+				ft_printf_char.c \
+				ft_printf_int.c \
+				ft_printf_ptr.c \
+				ft_printf_hex.c \
+				ft_printf_string.c \
+				ft_printf_uint.c \
+				ft_itoa_unsigned.c \
+				ft_itoa_hex.c \
+				ft_itoa_hex_long.c
+SRCSB		:= $(SRCS)
+OBJS		:= $(SRCS:.c=.o)
+OBJSB		:= $(SRCSB:.c=.o)
 
-LIBFT_FOLDER	:= ./libft
-LIBFT			:= libft.a
+LIBFT_DIR	:= ./libft
+LIBFT		:= libft.a
 
-CC				:= gcc
-CFLAGS			:= -Wall -Wextra -Werror
+CC			:= gcc
+CFLAGS		:= -Wall -Wextra -Werror
 
-RM				:= rm -f
+RM			:= rm -f
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
@@ -37,18 +40,18 @@ RM				:= rm -f
 all: $(NAME)
 
 $(NAME): $(LIBFT) $(OBJS)
-	cp $(LIBFT_FOLDER)/$(LIBFT) $(NAME)
-	ar rc $(NAME) $(OBJS)
+	cp $(LIBFT_DIR)/$(LIBFT) ./$(NAME)
+	ar rcs $(NAME) $(OBJS)
 
 $(LIBFT):
-	make -C $(LIBFT_FOLDER) bonus
+	make -C $(LIBFT_DIR) bonus
 
 clean:
-	make -C $(LIBFT_FOLDER) clean
+	make -C $(LIBFT_DIR) clean
 	$(RM) $(OBJSB)
 
 fclean: clean
-	make -C $(LIBFT_FOLDER) fclean
+	make -C $(LIBFT_DIR) fclean
 	$(RM) $(NAME)
 
 re: fclean all
