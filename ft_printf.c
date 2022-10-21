@@ -6,7 +6,7 @@
 /*   By: lorobert <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 08:54:02 by lorobert          #+#    #+#             */
-/*   Updated: 2022/10/21 17:00:49 by lorobert         ###   ########.fr       */
+/*   Updated: 2022/10/21 22:35:11 by lorobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ void	init_conversion(t_conversion *c)
 int	ft_printf(const char *format, ...)
 {
 	int				count;
+	int				value;
 	t_conversion	*conversion;
 
 	count = 0;
@@ -73,7 +74,10 @@ int	ft_printf(const char *format, ...)
 			format++;
 			continue ;
 		}
-		count += parse_conversion(++format, conversion);
+		value = parse_conversion(++format, conversion);
+		if (value < 0)
+			return (-1);
+		count += value;
 		format++;
 	}
 	va_end(conversion->args);

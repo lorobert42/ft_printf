@@ -6,7 +6,7 @@
 /*   By: lorobert <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 09:11:50 by lorobert          #+#    #+#             */
-/*   Updated: 2022/10/21 15:30:18 by lorobert         ###   ########.fr       */
+/*   Updated: 2022/10/21 22:36:09 by lorobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,5 @@ int	ft_printf_char(t_conversion *conv)
 	char	c;
 
 	c = va_arg(conv->args, int);
-	write(1, &c, 1);
-	return (1);
+	return (write(1, &c, 1));
 }
