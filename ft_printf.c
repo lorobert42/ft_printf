@@ -6,7 +6,7 @@
 /*   By: lorobert <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 08:54:02 by lorobert          #+#    #+#             */
-/*   Updated: 2022/10/21 22:35:11 by lorobert         ###   ########.fr       */
+/*   Updated: 2022/10/24 13:57:59 by lorobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,34 +15,55 @@
 #include <stdlib.h>
 #include "ft_printf.h"
 
-int	parse_conversion(const char *format, t_conversion *c)
+int	parse_conversion(const char **format, t_conversion *c)
 {
 	int	count;
 
 	count = 0;
-	if (*format == 'c')
+	if (**format == 'c')
 		count += ft_printf_char(c);
-	else if (*format == 's')
+	else if (**format == 's')
 		count += ft_printf_string(c);
-	else if (*format == 'p')
+	else if (**format == 'p')
 		count += ft_printf_ptr(c);
-	else if (*format == 'd' || *format == 'i')
+	else if (**format == 'd' || **format == 'i')
 		count += ft_printf_int(c);
-	else if (*format == 'u')
+	else if (**format == 'u')
 		count += ft_printf_uint(c);
-	else if (*format == 'x')
+	else if (**format == 'x')
 		count += ft_printf_hex(c, 0);
-	else if (*format == 'X')
+	else if (**format == 'X')
 		count += ft_printf_hex(c, 1);
-	else if (*format == '%')
+	else if (**format == '%')
 		count += write(1, "%", 1);
 	else
 		count = -1;
 	return (count);
 }
 
-void	init_conversion(t_conversion *c)
+int	parse_format(const char **format, t_conversion *c)
 {
+	int	count;
+
+	count = 0;
+	if (**format != '%')
+		count = write(1, *format, 1);
+	else
+	{
+		(*format)++;
+		count = parse_conversion(format, c);
+	}
+	(*format)++;
+	return (count);
+}
+
+t_conversion	*init_conversion()
+{
+	t_conversion	*c;
+
+	c = malloc(sizeof(t_conversion));
+	if (!c)
+		return (NULL);
 	c->minus = 0;
 	c->zero = 0;
 	c->point = 0;
@@ -52,6 +73,7 @@ void	init_conversion(t_conversion *c)
 	c->width = 0;
 	c->precision = 0;
 	c->specifier = 0;
+	return (c);
 }
 
 int	ft_printf(const char *format, ...)
@@ -61,24 +83,16 @@ int	ft_printf(const char *format, ...)
 	t_conversion	*conversion;
 
 	count = 0;
-	conversion = malloc(sizeof(t_conversion));
+	conversion = init_conversion();
 	if (!conversion)
 		return (-1);
-	init_conversion(conversion);
 	va_start(conversion->args, format);
 	while (*format)
 	{
-		if (*format != '%')
-		{
-			count += write(1, format, 1);
-			format++;
-			continue ;
-		}
-		value = parse_conversion(++format, conversion);
+		value = parse_format(&format, conversion);
 		if (value < 0)
 			return (-1);
 		count += value;
-		format++;
 	}
 	va_end(conversion->args);
 	free(conversion);
