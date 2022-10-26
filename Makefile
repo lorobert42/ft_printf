@@ -6,11 +6,11 @@
 #    By: lorobert <marvin@42lausanne.ch>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/10 14:40:57 by lorobert          #+#    #+#              #
-#    Updated: 2022/10/21 17:07:20 by lorobert         ###   ########.fr        #
+#    Updated: 2022/10/26 15:17:05 by lorobert         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		:= libftprintf.a
+NAME		:=	libftprintf.a
 
 SRCS		:=	ft_printf.c \
 				ft_printf_char.c \
@@ -22,17 +22,17 @@ SRCS		:=	ft_printf.c \
 				ft_itoa_unsigned.c \
 				ft_itoa_hex.c \
 				ft_itoa_hex_long.c
-SRCSB		:= $(SRCS)
-OBJS		:= $(SRCS:.c=.o)
-OBJSB		:= $(SRCSB:.c=.o)
+SRCSB		:=	$(SRCS)
+OBJS		:=	$(SRCS:.c=.o)
+OBJSB		:=	$(SRCSB:.c=.o)
 
-LIBFT_DIR	:= ./libft
-LIBFT		:= libft.a
+LIBFT_DIR	:=	./libft
+LIBFT		:=	libft.a
 
-CC			:= gcc
-CFLAGS		:= -Wall -Wextra -Werror
+CC			:=	gcc
+CFLAGS		:=	-Wall -Wextra -Werror
 
-RM			:= rm -f
+RM			:=	rm -f
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
@@ -41,7 +41,7 @@ all: $(NAME)
 
 $(NAME): $(LIBFT) $(OBJS)
 	cp $(LIBFT_DIR)/$(LIBFT) ./$(NAME)
-	ar rcs $(NAME) $(OBJS)
+	ar rc $(NAME) $(OBJS)
 
 $(LIBFT):
 	make -C $(LIBFT_DIR) bonus
