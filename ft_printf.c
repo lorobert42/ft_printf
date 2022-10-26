@@ -6,7 +6,7 @@
 /*   By: lorobert <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 08:54:02 by lorobert          #+#    #+#             */
-/*   Updated: 2022/10/26 15:33:32 by lorobert         ###   ########.fr       */
+/*   Updated: 2022/10/26 15:53:17 by lorobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,28 +17,23 @@
 
 int	parse_conversion(t_conversion *c)
 {
-	int	count;
-
-	count = 0;
 	if (*(c->format) == 'c')
-		count += ft_printf_char(c);
+		return (ft_printf_char(c));
 	else if (*(c->format) == 's')
-		count += ft_printf_string(c);
+		return (ft_printf_string(c));
 	else if (*(c->format) == 'p')
-		count += ft_printf_ptr(c);
+		return (ft_printf_ptr(c));
 	else if (*(c->format) == 'd' || *(c->format) == 'i')
-		count += ft_printf_int(c);
+		return (ft_printf_int(c));
 	else if (*(c->format) == 'u')
-		count += ft_printf_uint(c);
+		return (ft_printf_uint(c));
 	else if (*(c->format) == 'x')
-		count += ft_printf_hex(c, 0);
+		return (ft_printf_hex(c, 0));
 	else if (*(c->format) == 'X')
-		count += ft_printf_hex(c, 1);
+		return (ft_printf_hex(c, 1));
 	else if (*(c->format) == '%')
-		count += write(1, "%", 1);
-	else
-		count = -1;
-	return (count);
+		return (write(1, "%", 1));
+	return (-1);
 }
 
 int	parse_format(t_conversion *c)

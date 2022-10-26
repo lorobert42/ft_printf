@@ -6,7 +6,7 @@
 /*   By: lorobert <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 09:11:50 by lorobert          #+#    #+#             */
-/*   Updated: 2022/10/26 09:36:52 by lorobert         ###   ########.fr       */
+/*   Updated: 2022/10/26 16:03:26 by lorobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,14 @@ int	ft_printf_ptr(t_conversion *c)
 	ptr = va_arg(c->args, unsigned long int);
 	if (!ptr)
 		return (write(1, "0x0", 3));
-	write(1, "0x", 2);
+	if (write(1, "0x", 2) < 0)
+		return (-1);
 	s = ft_itoa_hex_long(ptr, 0);
+	if (!s)
+		return (-1);
 	count = write(1, s, ft_strlen(s));
 	free(s);
-	return (count + 2);
+	if (count >= 0)
+		return (count + 2);
+	return (-1);
 }
