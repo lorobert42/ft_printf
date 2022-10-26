@@ -6,7 +6,7 @@
 /*   By: lorobert <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 08:54:02 by lorobert          #+#    #+#             */
-/*   Updated: 2022/10/24 13:57:59 by lorobert         ###   ########.fr       */
+/*   Updated: 2022/10/26 09:39:15 by lorobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int	parse_format(const char **format, t_conversion *c)
 	return (count);
 }
 
-t_conversion	*init_conversion()
+t_conversion	*init_conversion(void)
 {
 	t_conversion	*c;
 
