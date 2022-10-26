@@ -6,7 +6,7 @@
 /*   By: lorobert <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 08:54:02 by lorobert          #+#    #+#             */
-/*   Updated: 2022/10/26 11:46:43 by lorobert         ###   ########.fr       */
+/*   Updated: 2022/10/26 15:33:32 by lorobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,10 @@ int	ft_printf(const char *format, ...)
 	{
 		value = parse_format(conversion);
 		if (value < 0)
+		{
+			free(conversion);
 			return (-1);
+		}
 		count += value;
 	}
 	va_end(conversion->args);
