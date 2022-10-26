@@ -6,7 +6,7 @@
 /*   By: lorobert <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 17:13:44 by lorobert          #+#    #+#             */
-/*   Updated: 2022/10/21 17:14:38 by lorobert         ###   ########.fr       */
+/*   Updated: 2022/10/26 11:09:53 by lorobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,17 @@
 # include "libft/libft.h"
 
 typedef struct s_conversion {
-	va_list	args;
-	bool	minus;
-	bool	zero;
-	bool	point;
-	bool	hash;
-	bool	space;
-	bool	plus;
-	int		width;
-	int		precision;
-	char	specifier;
+	const char	*format;
+	va_list		args;
+	bool		minus;
+	bool		zero;
+	bool		point;
+	bool		hash;
+	bool		space;
+	bool		plus;
+	int			width;
+	int			precision;
+	char		specifier;
 }	t_conversion;
 
 int		ft_printf(const char *format, ...);
