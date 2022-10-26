@@ -6,7 +6,7 @@
 /*   By: lorobert <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 08:54:02 by lorobert          #+#    #+#             */
-/*   Updated: 2022/10/26 09:39:15 by lorobert         ###   ########.fr       */
+/*   Updated: 2022/10/26 10:04:23 by lorobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,23 +57,17 @@ int	parse_format(const char **format, t_conversion *c)
 	return (count);
 }
 
-t_conversion	*init_conversion(void)
+void	init_conversion(t_conversion **c)
 {
-	t_conversion	*c;
-
-	c = malloc(sizeof(t_conversion));
-	if (!c)
-		return (NULL);
-	c->minus = 0;
-	c->zero = 0;
-	c->point = 0;
-	c->hash = 0;
-	c->space = 0;
-	c->plus = 0;
-	c->width = 0;
-	c->precision = 0;
-	c->specifier = 0;
-	return (c);
+	(*c)->minus = 0;
+	(*c)->zero = 0;
+	(*c)->point = 0;
+	(*c)->hash = 0;
+	(*c)->space = 0;
+	(*c)->plus = 0;
+	(*c)->width = 0;
+	(*c)->precision = 0;
+	(*c)->specifier = 0;
 }
 
 int	ft_printf(const char *format, ...)
@@ -83,9 +77,10 @@ int	ft_printf(const char *format, ...)
 	t_conversion	*conversion;
 
 	count = 0;
-	conversion = init_conversion();
+	conversion = malloc(sizeof(t_conversion));
 	if (!conversion)
 		return (-1);
+	init_conversion(&conversion);
 	va_start(conversion->args, format);
 	while (*format)
 	{
