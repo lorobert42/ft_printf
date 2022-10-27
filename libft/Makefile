@@ -45,8 +45,8 @@ SRCS	:=	ft_isalnum.c \
 			ft_putchar_fd.c \
 			ft_putstr_fd.c \
 			ft_putendl_fd.c \
-			ft_putnbr_fd.c
-SRCSB	:=	ft_lstnew.c \
+			ft_putnbr_fd.c \
+			ft_lstnew.c \
 			ft_lstadd_front.c \
 			ft_lstsize.c \
 			ft_lstlast.c \
@@ -54,33 +54,28 @@ SRCSB	:=	ft_lstnew.c \
 			ft_lstdelone.c \
 			ft_lstclear.c \
 			ft_lstiter.c \
-			ft_lstmap.c \
-			$(SRCS)
+			ft_lstmap.c
 OBJS	:=	$(SRCS:.c=.o)
-OBJSB	:=	$(SRCSB:.c=.o)
 
 CC		:=	gcc
 CFLAGS	:=	-Wall -Wextra -Werror
 
 RM		:=	rm -f
 
-%.o:		%.c
-		$(CC) $(CFLAGS) -c $< -o $@
+%.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $@
 
-all:		$(NAME)
+all: $(NAME)
 
-$(NAME):	$(OBJS)
-		ar rc $(NAME) $(OBJS)
-
-bonus:		$(OBJSB)
-		ar rc $(NAME) $(OBJSB)
+$(NAME): $(OBJS)
+	ar rc $(NAME) $(OBJS)
 
 clean:
-		$(RM) $(OBJSB)
+	$(RM) $(OBJS)
 
-fclean:		clean
-		$(RM) $(NAME)
+fclean: clean
+	$(RM) $(NAME)
 
-re:			fclean all
+re: fclean all
 
-.PHONY: all bonus clean fclean re
+.PHONY: all clean fclean re

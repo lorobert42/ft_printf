@@ -15,7 +15,7 @@
 #include <stdlib.h>
 #include "ft_printf.h"
 
-int	parse_conversion(t_conversion *c)
+static int	parse_conversion(t_conversion *c)
 {
 	if (*(c->format) == 'c')
 		return (ft_printf_char(c));
@@ -36,7 +36,7 @@ int	parse_conversion(t_conversion *c)
 	return (-1);
 }
 
-int	parse_format(t_conversion *c)
+static int	parse_format(t_conversion *c)
 {
 	int	count;
 
@@ -52,7 +52,7 @@ int	parse_format(t_conversion *c)
 	return (count);
 }
 
-void	init_flags(t_conversion **c)
+static void	init_flags(t_conversion **c)
 {
 	(*c)->minus = 0;
 	(*c)->zero = 0;
