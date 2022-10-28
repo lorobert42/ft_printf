@@ -44,7 +44,7 @@ $(NAME): $(LIBFT) $(OBJS)
 	ar rc $(NAME) $(OBJS)
 
 $(LIBFT):
-	make -C $(LIBFT_DIR) bonus
+	make -C $(LIBFT_DIR)
 
 clean:
 	make -C $(LIBFT_DIR) clean
