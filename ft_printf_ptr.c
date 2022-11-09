@@ -13,20 +13,21 @@
 #include <unistd.h>
 #include <stdarg.h>
 #include <stdlib.h>
+#include <inttypes.h>
 #include "ft_printf.h"
 
 int	ft_printf_ptr(t_conversion *c)
 {
-	unsigned long int	ptr;
-	char				*s;
-	int					count;
+	uintptr_t	ptr;
+	char		*s;
+	int			count;
 
-	ptr = va_arg(c->args, unsigned long int);
+	ptr = va_arg(c->args, uintptr_t);
 	if (!ptr)
 		return (write(1, "0x0", 3));
 	if (write(1, "0x", 2) < 0)
 		return (-1);
-	s = ft_itoa_hex_long(ptr, 0);
+	s = ft_itoa_ptr(ptr, 0);
 	if (!s)
 		return (-1);
 	count = write(1, s, ft_strlen(s));

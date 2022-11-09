@@ -21,7 +21,7 @@ SRCS		:=	ft_printf.c \
 				ft_printf_uint.c \
 				ft_itoa_unsigned.c \
 				ft_itoa_hex.c \
-				ft_itoa_hex_long.c
+				ft_itoa_ptr.c
 SRCSB		:=	$(SRCS)
 OBJS		:=	$(SRCS:.c=.o)
 OBJSB		:=	$(SRCSB:.c=.o)
@@ -44,7 +44,7 @@ $(NAME): $(LIBFT) $(OBJS)
 	ar rc $(NAME) $(OBJS)
 
 $(LIBFT):
-	make -C $(LIBFT_DIR) bonus
+	make -C $(LIBFT_DIR)
 
 clean:
 	make -C $(LIBFT_DIR) clean

@@ -15,6 +15,7 @@
 
 # include <stdbool.h>
 # include <stdarg.h>
+# include <inttypes.h>
 # include "libft/libft.h"
 
 typedef struct s_conversion {
@@ -40,6 +41,6 @@ int		ft_printf_uint(t_conversion *c);
 int		ft_printf_hex(t_conversion *c, int is_upp);
 char	*ft_itoa_unsigned(unsigned int n);
 char	*ft_itoa_hex(unsigned int n, int is_upp);
-char	*ft_itoa_hex_long(unsigned long int n, int is_upp);
+char	*ft_itoa_ptr(uintptr_t n, int is_upp);
 
 #endif

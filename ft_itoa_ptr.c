@@ -12,9 +12,9 @@
 
 #include <stdlib.h>
 #include <stddef.h>
-#include <limits.h>
+#include <inttypes.h>
 
-static size_t	ft_len_nbr(unsigned long int n)
+static int	ft_len_nbr(uintptr_t n)
 {
 	size_t	radix;
 
@@ -27,9 +27,9 @@ static size_t	ft_len_nbr(unsigned long int n)
 	return (radix);
 }
 
-char	*ft_itoa_hex_long(unsigned long int n, int is_upp)
+char	*ft_itoa_ptr(uintptr_t n, int is_upp)
 {
-	size_t	len;
+	int		len;
 	char	*nbr;
 	char	*base;
 
