@@ -22,12 +22,10 @@ SRCS		:=	ft_printf.c \
 				ft_itoa_unsigned.c \
 				ft_itoa_hex.c \
 				ft_itoa_ptr.c
-SRCSB		:=	$(SRCS)
 OBJS		:=	$(SRCS:.c=.o)
-OBJSB		:=	$(SRCSB:.c=.o)
 
 LIBFT_DIR	:=	./libft
-LIBFT		:=	libft.a
+LIBFT		:=	$(addprefix $(LIBFT_DIR)/, libft.a)
 
 CC			:=	gcc
 CFLAGS		:=	-Wall -Wextra -Werror
@@ -40,7 +38,7 @@ RM			:=	rm -f
 all: $(NAME)
 
 $(NAME): $(LIBFT) $(OBJS)
-	cp $(LIBFT_DIR)/$(LIBFT) ./$(NAME)
+	cp $(LIBFT) ./$(NAME)
 	ar rc $(NAME) $(OBJS)
 
 $(LIBFT):
@@ -48,7 +46,7 @@ $(LIBFT):
 
 clean:
 	make -C $(LIBFT_DIR) clean
-	$(RM) $(OBJSB)
+	$(RM) $(OBJS)
 
 fclean: clean
 	make -C $(LIBFT_DIR) fclean
